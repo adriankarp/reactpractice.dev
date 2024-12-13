@@ -7,29 +7,29 @@ This repository contains solutions to React challenges from [React Practice](htt
 The project follows this structure:
 
 ```
-react-challenges/
-├── public/                # Static files
-├── src/
-│   ├── challenges/        # Individual challenge components
-│   │   ├── Challenge1.js
-│   │   ├── Challenge2.js
-│   │   └── ...
-│   ├── components/        # Shared components (if any)
-│   ├── pages/             # Main page and additional pages
-│   │   └── MainPage.js
-│   ├── App.js             # Main application component with routing
-│   ├── index.js           # React entry point
-│   └── ...
+reactpractice.dev/
+├── app/                   # Core application files
+│   ├── components/        # Shared components for the app
+│   │   ├── challenge-layout.tsx # Layout component for challenges
+│   ├── routes/                # Route definitions and structure
+│   │   ├── home.tsx           # Home page component
+│   │   ├── challenge1.tsx     # Challenge 1 route
+│   ├── solutions/             # Individual challenge solutions
+│   │   ├── solution1.tsx      # Solution for Challenge 1
+│   ├── routes.ts          # Route definitions
+├── public/                # Static assets
 ├── package.json           # Project dependencies
-└── README.md              # Project information
 ```
 
 ## Features
 
-- **Main page**: A list of all implemented challenges with navigation links.
-- **Interactive challenges**: Each challenge is a standalone page.
-- **Routing**: Easily navigate between challenges using React Router.
-- **Customizable**: Add new challenges or modify existing ones as needed.
+- **Main page**: A home page (`home.tsx`) with links to challenges.
+- **Interactive challenges**: Each challenge is a standalone component.
+- **Reusable components**: Shared components like layouts are available in the `components/` directory.
+- **Routing**: Implemented using React Router, with routes defined in `routes.ts`.
+- **Customizable**: Easily add new challenges, routes, or components.
+- **Styling**: Tailwind CSS is configured for responsive and consistent styling.
+- **Scalable structure**: Supports adding more challenges and shared components.
 
 ## Getting Started
 
@@ -43,8 +43,8 @@ react-challenges/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/react-challenges.git
-   cd react-challenges
+   git clone https://github.com/your-username/reactpractice.dev.git
+   cd reactpractice.dev
    ```
 
 2. Install dependencies:
@@ -59,61 +59,35 @@ react-challenges/
 Start the development server:
 
 ```bash
-npm start
+npm run dev
 # or
-yarn start
+yarn dev
 ```
 
-The app will be available at `http://localhost:3000/`.
+The app will be available at the local URL printed in the terminal (e.g., `http://localhost:5173`).
 
 ### Adding a New Challenge
 
-1. Create a new file in the `src/challenges/` directory, e.g., `Challenge3.js`.
-2. Implement the solution in the new file.
-3. Import the component and add a route in `App.js`:
-
-   ```javascript
-   import Challenge3 from "./challenges/Challenge3";
-
-   <Route path="/challenge3" element={<Challenge3 />} />;
+1. Create a new solution file in the `solutions/` directory, e.g., `solution2.tsx`.
+2. Create a corresponding route file in the `routes/` directory, e.g., `challenge2.tsx`.
+3. Define the route in `routes.ts`:
+   ```typescript
+   {
+     path: '/challenge-2',
+     file: 'routes/challenge2.tsx',
+   }
    ```
-
-4. Add the challenge to the main page (`src/pages/MainPage.js`):
-   ```javascript
+4. Add a navigation link in `home.tsx`:
+   ```tsx
    <li>
-     <Link to="/challenge3">Challenge 3</Link>
+     <Link to="/challenge-2">Challenge 2</Link>
    </li>
    ```
+5. Use the `ChallengeLayout` component if applicable to maintain consistency.
 
 ### Main Page
 
-The main page (`MainPage.js`) displays a list of all implemented challenges with navigation links. It serves as the landing page of the application.
-
-Example:
-
-```javascript
-import React from "react";
-import { Link } from "react-router-dom";
-
-const MainPage = () => {
-  return (
-    <div>
-      <h1>React Challenges</h1>
-      <ul>
-        <li>
-          <Link to="/challenge1">Challenge 1</Link>
-        </li>
-        <li>
-          <Link to="/challenge2">Challenge 2</Link>
-        </li>
-        {/* Add more links as you implement new challenges */}
-      </ul>
-    </div>
-  );
-};
-
-export default MainPage;
-```
+The main page (`home.tsx`) serves as the entry point and displays a list of links to all implemented challenges. Each challenge is displayed as a visually appealing card-style link.
 
 ### Deploying
 
@@ -123,7 +97,7 @@ To deploy the app (e.g., to GitHub Pages):
    ```bash
    npm run build
    ```
-2. Deploy the `build` folder to your hosting service.
+2. Deploy the `dist` folder to your hosting service.
 
 ## Contributing
 
@@ -134,6 +108,7 @@ Feel free to fork this repository and submit pull requests if you have improveme
 - [React Practice](https://reactpractice.dev)
 - [React Documentation](https://reactjs.org/docs/)
 - [React Router Documentation](https://reactrouter.com/en/main)
+- [Vite Documentation](https://vitejs.dev/)
 
 ## License
 
